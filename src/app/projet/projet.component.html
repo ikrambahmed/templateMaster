@@ -1,0 +1,74 @@
+<div class="card" >
+  <div class="card-header">
+    <div class="search-projets">
+      <input class="form-control text-right" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+        placeholder="&#61442; ابحث هنا ">
+    </div>
+  </div>
+  <div class="card-body" >
+      <button class="btn btn-outline-primary" (click)="operation='ADD'" dir="ltr">اظافة</button>
+  
+      <table class="table table-hover table-bordered text-right" >
+  
+        <thead>
+          <tr div class="text-right">
+            <th >رقم المشروع</th>
+            <th>المشروع </th> 
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let projet of projets | filter:searchText | paginate: { id: 'listing_pagination',
+          itemsPerPage: 10,
+          currentPage: page,
+          totalItems: totalRec} ">
+              <td>{{projet.codPrj}}</td>
+            <td>{{projet.libPrjL}} </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true"
+          (pageChange)="page = $event" previousLabel="السابقة" nextLabel="الاخرى"></pagination-controls>
+      </div>    
+    </div>
+    </div>
+  <div class="card"  *ngIf="operation=='ADD'" >
+    <div class="card-header text-right">
+        اضافة مشروع
+    </div>
+  <div class="container" >  
+          <div class="card-body ">
+  
+            <form [formGroup]="PojetForm" #f="ngForm">
+              <div class="row" dir="rtl">
+                <div class="form-group col-md-6 text-right">
+                  <label>السنة</label>
+                  <h4><span class="label label-default">{{year}}</span></h4>
+                </div>
+              </div>
+              <div class="row" dir="rtl">
+                <div class="form-group col-md-6 text-right">
+                  <label>المشروع رقم</label>
+                  <input type="textbox" class="form-control" formControlName="codPrj" [(ngModel)]="codeProjet">
+                </div>
+              </div>
+                <div class="row">
+                <div class="form-group col-md-6 text-right">
+                  <label>المشروع</label>
+                  <input type="textbox" class="form-control" formControlName="libprjA">
+                </div>
+                <div class="form-group col-md-6 text-right">
+                  <label>Projet</label>
+                  <input type="textbox" class="form-control" formControlName="libPrjL">
+                  <input type="textbox" class="form-control" formControlName="code" [(ngModel)]="cod" hidden>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-success" (click)="add()">إدخال</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    
+  </div>
