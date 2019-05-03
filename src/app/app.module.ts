@@ -25,6 +25,7 @@ import { BudgetProjComponent } from './budget-proj/budget-proj.component';
 import { StoreModule } from '@ngrx/store';
 import { principalReducer } from './shared/principal.reducer';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StepperComponent } from './stepper/stepper.component';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     
        
     ],
-    declarations: [AppComponent ],
+    declarations: [AppComponent, StepperComponent ],
     providers: [AuthGuard,AppService,CookieService,
      HomeService,MissionService, OrdMissService, MissionnaireService, 
         {provide :HTTP_INTERCEPTORS, useClass :XHrInterceptor  , multi : true }],
