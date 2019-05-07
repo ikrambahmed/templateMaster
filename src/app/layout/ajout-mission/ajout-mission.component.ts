@@ -1,22 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { budget } from 'src/app/models/budget';
-import { Mission } from 'src/app/models/mission';
 import { Motcle } from 'src/app/models/Motcle';
+import { Mission } from 'src/app/models/mission';
 import { MissionService } from 'src/app/services/mission.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-one-mission',
-  templateUrl: './one-mission.component.html',
-  styleUrls: ['./one-mission.component.scss']
+  selector: 'app-ajout-mission',
+  templateUrl: './ajout-mission.component.html',
+  styleUrls: ['./ajout-mission.component.scss']
 })
-export class OneMissionComponent implements OnInit {
-
-  @Input ()
-  operation :String; 
-  @Input()
-  selectedMission:Mission=new Mission(); 
+export class AjoutMissionComponent implements OnInit {
   codeMission :String; 
   Avoirbudg:Boolean ; 
   x:Number ; 
@@ -70,7 +65,7 @@ console.log(this.Avoirbudg) ;
   () => {console.log('loading budgets was done ')}
 )}
 Avoirbudgproj:Boolean ; 
-budgetsProjet:budget[] ; 
+budgetsProjet:budget [] ; 
 
 dateDiff(date1, date2){
   var tmp = date2 - date1;
@@ -148,14 +143,7 @@ loadBudgetsProjet()
 
 toggle(){
   console.log('karouma') ;
-  console.log(this.selectedMission.datdepP) ; 
-  console.log(this.selectedMission.datarrP) ; 
-  let key1 = 'datdepP';
 
-  localStorage.setItem(key1, JSON.stringify(this.selectedMission.datdepP));
-  let key2 = 'datarrP';
-
-  localStorage.setItem(key2, JSON.stringify(this.selectedMission.datarrP));
 
   var promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -195,13 +183,8 @@ toggle(){
     var data = JSON.parse(DeptGenVal) ; 
     console.log('retrievedObject: ',data.departement.code) ;
     this.cod=data.departement.code ;
-
-    console.log('cod'+this.cod) ;  
-    console.log('d'+this.d) ; 
-    console.log('year'+this.year) ; 
-    console.log('y'+this.y) ; 
-    console.log('loooppp',this.operation);
-    this.show=true ; 
+this.show=true ;
+   
     this.loadBudgets() ; 
     this.loadBudgetsProjet() ; 
   //  this.datdepP1= this.selectedMission.datdepP;
@@ -228,23 +211,25 @@ toggle(){
     const m = this.missionForm.value ;
    // alert(JSON.stringify(m));
     if(this.nb<0 || this.nb==undefined){
+      //window.alert('erreur de duree') ; 
       window.alert('الرجاء التثبت من المدة') ; 
+
+
     }
     if(this.nb>=0){
     this.missionService.addMission(m).subscribe(
       res => {
 
         this.mission=res ; 
+          console.log("donne") ;   
           let key = 'num_mission';
           localStorage.setItem(key,this.missionForm.get('numMission').value);
           let key1 = 'datdepP';
-          localStorage.setItem(key1, JSON.stringify(this.selectedMission.datdepP));
-          let key2 = 'datarrP';
-          localStorage.setItem(key2, JSON.stringify(this.selectedMission.datarrP));
-          let key5='duree' ; 
-          localStorage.setItem(key5, JSON.stringify(this.nb));
+
           alert('لقد تمت الاضافة بنجاح') ; 
-          this.reloadCode() ; 
+
+
+         this.reloadCode() ; 
           this.createForm() ; 
           this.ngOnInit();
           this.show=false ;
@@ -253,12 +238,15 @@ toggle(){
          },
          error=>{console.log(error);
           alert("الرجاءالتثبت من المعطيات");}
+    
     );}
    
   }
 
   reloadCode()
   {
+    console.log('reload') ; 
+    
   this.missionService.getLatestMissionCode(this.cod).subscribe(
   d=>{
     if((d===null) || (d===undefined) || (d.length ===0 ))
@@ -292,38 +280,4 @@ clickMethod(name: string) {
   }
 }
 
-update(){
-  const m = this.missionForm.value ;
-  alert(JSON.stringify(m));
-  this.missionService.updateMission(m).subscribe(
-    res => {
-      alert('لقد تم التغيير بنجاح') ; 
-
-      this.mission=res ; 
-        console.log("donne") ;   
-        let key = 'num_mission';
-        localStorage.setItem(key,this.missionForm.get('numMission').value);
-        let key1 = 'datdepP';
-
-        localStorage.setItem(key1, JSON.stringify(this.selectedMission.datdepP));
-        let key2 = 'datarrP';
-
-        localStorage.setItem(key2, JSON.stringify(this.selectedMission.datarrP));
-        let x =this.dateDiff(this.selectedMission.datdepP,this.selectedMission.datarrP) ; 
-        console.log('durree',x) ; 
-        let key3='duree' ; 
-        localStorage.setItem(key3, JSON.stringify(this.x));
-
-         this.reloadCode() ; 
-        this.createForm() ; 
-        this.ngOnInit();
-        this.show=false ;
-        this.router.navigateByUrl('ord') ;
-       },
-       error=>{console.log(error);
-        alert('الرجاءالتثبت من المعطيات') ;}
-  
-  );
-
-}
 }

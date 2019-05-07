@@ -11,34 +11,27 @@ export class ListeMissionnaireComponent implements OnInit {
   cod : String ;
   missionnaires: Missionnaire[] ;
   searchText;
-
-
   operation: string ;
   selectedMissionnaire : Missionnaire ; 
-
   constructor(
   private missionnaireService : MissionnaireService
     ) { }
-
   ngOnInit() {
    this.initMiss() ;
    var DeptGenVal = localStorage.getItem('deptGen') ; 
    var data = JSON.parse(DeptGenVal) ; 
    console.log('retrievedObject: ',data.departement.code) ;
    this.cod=data.departement.code;
-
- this.loadMissionaire() ; 
+   this.loadMissionaire() ; 
  }
   
   editOp()
   {
     this.operation='EDIT' ; 
-    console.log('mmm',this.selectedMissionnaire) ; 
   }
   removeOp()
   {
     this.operation="REMOVE" ; 
-    console.log('mmm',this.selectedMissionnaire) ; 
 
     
   }

@@ -1,8 +1,8 @@
-
-<div *ngIf="operation=='ADD'|| operation=='EDIT'">
+<div dir="rtl">
+    <app-page-header [heading]="'ادخال مامورية جديدة'" [icon]="'fa-desktop'"></app-page-header>
+<div >
     <div class="card">
-      <div class="card-header">{{ operation == 'ADD' ? 'ادخال' :
-          operation == 'EDIT' ? 'تغيير' : ''}}</div>
+      <div class="card-header">ادخال مامورية جديدة</div>
     <div *ngIf="show==true">
         <div class="container" >
               <div class="card-body">
@@ -10,11 +10,9 @@
                 <form [formGroup]="missionForm" #f="ngForm">
                    <div class="row" dir="rtl">
                       <div class="form-group col-md-12 text-center">
-                         <div *ngIf="operation=='ADD'"><h4>رقم المأمورية<span class = "label label-default">{{cod}}/{{codeMission}}</span></h4>
+                         <div ><h4>رقم المأمورية<span class = "label label-default">{{cod}}/{{codeMission}}</span></h4>
                           <input type="text" class="form-control" formControlName="numMission" [(ngModel)]="codeMission" hidden>
                         </div> 
-                         <div *ngIf="operation=='EDIT'"><h4>رقم المأمورية<span class = "label label-default">{{cod}}/{{selectedMission.numMission}}</span></h4></div> 
-                         <input type="text" class="form-control" formControlName="numMission" [(ngModel)]="selectedMission.numMission" hidden>
     
                         </div>  
                    </div>
@@ -34,15 +32,15 @@
                   </div>
     
                   <div class="row">
-                    <div class="form-group col-md-6 text-left">
-                      <label> Objet de la mission</label>
-                      <textarea class="form-control rounded-0" formControlName="objetl" id="exampleFormControlTextarea1" rows="10" [(ngModel)]="selectedMission.objetl"></textarea>
-                    </div>
+
                     <div class="form-group col-md-6 text-right">
                       <label for="exampleFormControlTextarea1">موضوع المأمورية </label>
-                      <textarea class="form-control rounded-0" formControlName="objeta" id="exampleFormControlTextarea1"  rows="10" [(ngModel)]="selectedMission.objeta"></textarea>
+                      <textarea class="form-control rounded-0" formControlName="objeta" id="exampleFormControlTextarea1"  rows="10" ></textarea>
                     </div>
-    
+                        <div class="form-group col-md-6 text-left">
+                          <label> Objet de la mission</label>
+                          <textarea class="form-control rounded-0" formControlName="objetl" id="exampleFormControlTextarea1" rows="10" ></textarea>
+                        </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-4 text-right">
@@ -53,13 +51,13 @@
                       <label>تاريخ الاياب </label>
     
                       <input type="date" id="date1" class="form-control" formControlName="datarrP"
-                       [(ngModel)]="selectedMission.datarrP" (change)="toggle()"/>
+                     (change)="toggle()"/>
     
                     </div>
                     <div class="form-group col-md-4 text-right">
                       <label>تاريخ الذهاب </label>
     
-                      <input type="date" id="date2" class="form-control" formControlName="datdepP" [(ngModel)]="selectedMission.datdepP" />
+                      <input type="date" id="date2" class="form-control" formControlName="datdepP" />
     
                     </div>
     
@@ -68,29 +66,29 @@
                   
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
-  {{ operation == 'ADD' ? 'اظافة' : operation == 'EDIT' ? 'تغيير': ''}}
-</button>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-right">
-          هل انت متاكد؟</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">لا</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="operation == 'ADD' ? add() : operation=='EDIT'? update() : '' " >نعم</button>
-        </div>
-      </div>
-    </div>
-  </div>
-    </div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+                     اظافة
+                    </button>
+                    
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel"></h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body text-right">
+                              هل انت متاكد؟</div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">لا</button>
+                              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="add()">نعم</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        </div>
                 
     
                 </form>
@@ -119,4 +117,5 @@
     </div>
   </div>
     
+    </div>
     </div>

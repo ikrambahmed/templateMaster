@@ -50,7 +50,7 @@ import { StepperComponent } from './stepper/stepper.component';
     
        
     ],
-    declarations: [AppComponent, StepperComponent ],
+    declarations: [AppComponent,StepperComponent ],
     providers: [AuthGuard,AppService,CookieService,
      HomeService,MissionService, OrdMissService, MissionnaireService, 
         {provide :HTTP_INTERCEPTORS, useClass :XHrInterceptor  , multi : true }],

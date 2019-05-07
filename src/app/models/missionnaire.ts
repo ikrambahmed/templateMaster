@@ -5,28 +5,30 @@ import { categorie } from './categorie';
 import { DeptGen } from './DeptGen';
 
 export class Missionnaire {
+
+
   cin: String;
   matricule: String;
   nom: String;
   nomL: String;
-  prenom: string;
+  prenom: String;
+  place_cin :String ;
+  date_cin :Date ; 
   prenomL: String;
   nationalite: String;
   nationaliteL: String;
   datenaissance: Date;
   place_naissance: String;
   rib: String;
-  date_cin: Date;
-  place_cin: String;
   niveau: String;
   ministr: String;
   groupe: String;
   graade: grade;
   fonnction: fonction;
-  classee: classe;
-  cat: categorie;
-  code:DeptGen ; 
-
+  classgrd: classe;
+  codCat: categorie;
+  code:DeptGen ;
+  codgrp:String ;
   constructor(
     cin?: String,
     matricule?: String,
@@ -46,9 +48,11 @@ export class Missionnaire {
     groupe?: String,
     graade?: grade,
     fonnction?: fonction,
-    classee?: classe,
-    cat?: categorie,
-    code?:DeptGen,
+    classgrd?: classe,
+    codCat?: categorie,
+    code?:String ,
+    dept ?:DeptGen ,
+    codgrp?:String 
     // public  group?:number ,
     //   public  dept?:number 
   ) {
@@ -57,8 +61,8 @@ export class Missionnaire {
     this.code=new DeptGen() ; 
     this.graade = new grade();
     this.fonnction = new fonction();
-    this.classee = new classe();
-    this.cat = new categorie();
+    this.classgrd = new classe();
+    this.codCat = new categorie();
 
   };
 

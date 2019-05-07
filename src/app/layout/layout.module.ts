@@ -5,7 +5,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -30,6 +30,12 @@ import { ValidationComponent } from './validation/validation.component';
 import { StoreModule } from '@ngrx/store';
 import { principalReducer } from '../shared/principal.reducer';
 import { ListeOrdreComponent } from './liste-ordre/liste-ordre.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { AjoutBudgetDeptComponent } from './ajout-budget-dept/ajout-budget-dept.component';
+import { AjoutBudgetProjetComponent } from './ajout-budget-projet/ajout-budget-projet.component';
+import { AjoutMissionComponent } from './ajout-mission/ajout-mission.component';
+import { PageHeaderModule } from '../shared';
+import { StepperComponent } from '../stepper/stepper.component';
 
 @NgModule({
     imports: [
@@ -45,6 +51,7 @@ import { ListeOrdreComponent } from './liste-ordre/liste-ordre.component';
         Ng2SearchPipeModule,
         NgxPaginationModule,
         NgbModule ,
+        PageHeaderModule,
         StoreModule.forRoot({principal:principalReducer})
     ],
     declarations: [LayoutComponent,ProjetComponent, SidebarComponent, HeaderComponent,BudgetDeptComponent,ProjetComponent, MissionComponent,MissionnaireComponent,
@@ -55,6 +62,10 @@ import { ListeOrdreComponent } from './liste-ordre/liste-ordre.component';
     OrdMissionnaireComponent,
     FraisMissionComponent,
     ValidationComponent,
-    ListeOrdreComponent]
+    ListeOrdreComponent,
+    NavbarComponent,
+    AjoutBudgetDeptComponent,
+    AjoutBudgetProjetComponent,
+    AjoutMissionComponent]
 })
 export class LayoutModule {}

@@ -1,3 +1,6 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <nav class="navbar navbar-expand-lg fixed-top">
     <a class="navbar-brand" href="#">منظومة المأموريات بالخارج  </a>
     <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
@@ -5,21 +8,9 @@
         <i class="fa fa-bars text-muted" aria-hidden="true"></i>
     </button>
     <div class="collapse navbar-collapse">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
-        </form>
+       
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-none d-xl-block">
-                <a
-                    href="https://github.com/start-angular/SB-Admin-BS4-Angular-7/archive/master.zip"
-                    class="nav-link btn mt-1 text-white" role="button"
-                    style="padding: .375rem 1rem !important;border-color: white;"
-                >
-                    {{ 'Download Now' | translate }}
-                </a>
-            </li> &nbsp;
-          
-          <!--  <li class="nav-item dropdown" ngbDropdown>
+             <li class="nav-item dropdown" ngbDropdown>
                 <a class="nav-link" href="javascript:void(0)" ngbDropdownToggle>
                     <i class="fa fa-envelope"></i> <b class="caret"></b><span class="sr-only">(current)</span>
                 </a>
@@ -57,7 +48,7 @@
                         </div>
                     </li>
                 </ul>
-            </li>-->
+            </li>
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link text-white" ngbDropdownToggle>
                     <i class="fa fa-bell"></i> <b class="caret"></b><span class="sr-only">(current)</span>
@@ -78,10 +69,11 @@
                     </a>
                 </div>
             </li>
-         <!--   <li class="nav-item dropdown" ngbDropdown>
+      <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link text-white" ngbDropdownToggle>
                     <i class="fa fa-language "></i> {{ 'Language' | translate }} <b class="caret "></b>
                 </a>
+                
                 <div class="dropdown-menu-right" ngbDropdownMenu>
                     <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('en')">
                         {{ 'English' | translate }}
@@ -108,7 +100,36 @@
                         {{ 'Simplified Chinese' | translate }}
                     </a>
                 </div>
-            </li>-->
+            </li>
+            
+            <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown3</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    </ul>
+                </li>
+
+
+            
+
             <li class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link text-white" ngbDropdownToggle>
                     <i class="fa fa-user"></i> المستعمل  <b class="caret"></b>
@@ -129,3 +150,20 @@
         </ul>
     </div>
 </nav>
+<br>
+   <script>
+   (function($){
+	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+	  if (!$(this).next().hasClass('show')) {
+		$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+	  }
+	  var $subMenu = $(this).next(".dropdown-menu");
+	  $subMenu.toggleClass('show');
+
+	  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+		$('.dropdown-submenu .show').removeClass("show");
+	  });
+
+	  return false;
+	});
+})(jQuery)</script>

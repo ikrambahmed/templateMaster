@@ -12,6 +12,10 @@ import { OrdMissionnaireComponent } from './ord-missionnaire/ord-missionnaire.co
 import { FraisMissionComponent } from './frais-mission/frais-mission.component';
 import { ValidationComponent } from './validation/validation.component';
 import { ListeOrdreComponent } from './liste-ordre/liste-ordre.component';
+import { AjoutBudgetDeptComponent } from './ajout-budget-dept/ajout-budget-dept.component';
+import { AjoutBudgetProjetComponent } from './ajout-budget-projet/ajout-budget-projet.component';
+import { OneMissionComponent } from './one-mission/one-mission.component';
+import { AjoutMissionComponent } from './ajout-mission/ajout-mission.component';
 
 const routes: Routes = [
     {
@@ -33,11 +37,14 @@ const routes: Routes = [
             {path:'listeMissionnaire', component:ListeMissionnaireComponent},
             {path:'mission', component:MissionComponent},
             {path:'listeOdreMission',component:ListeOrdreComponent} , 
-
             {path:'budgetProj',component:BudgetProjComponent} , 
             {path:'ord',component:OrdMissionnaireComponent},
             {path:'frais',component:FraisMissionComponent},
-            {path:'validation',component:ValidationComponent}
+            {path:'validation',component:ValidationComponent},
+            {path:'ajoutBudgetDept',component:AjoutBudgetDeptComponent},
+            {path:'ajoutBudgetProjet',component:AjoutBudgetProjetComponent},
+            {path:'oneMission',component:OneMissionComponent},
+            {path:'ajoutMission',component:AjoutMissionComponent}
         ]
     }
 ];

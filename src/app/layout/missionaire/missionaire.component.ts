@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { grade } from 'src/app/models/grade';
 import { fonction } from 'src/app/models/fonction';
@@ -8,6 +8,8 @@ import { classe } from 'src/app/models/classe';
 import { Missionnaire } from 'src/app/models/missionnaire';
 import { MissionnaireService } from 'src/app/services/missionnaire.service';
 import { DeptGen } from 'src/app/models/DeptGen';
+import { Router } from '@angular/router';
+import { ListeMissionnaireComponent } from '../liste-missionnaire/liste-missionnaire.component';
 
 @Component({
   selector: 'app-missionaire',
@@ -24,7 +26,7 @@ export class MissionaireComponent implements OnInit {
   groupes : groupe[] ; 
   classes : classe[] ; 
   public onegrade : any ; 
-  
+  done:Boolean ; 
 @Input ()
 operation ; 
 @Input() 
@@ -32,7 +34,7 @@ butonMsg ;
 @Input()
  selectedMissionnaire ; 
 
-  constructor(private fb : FormBuilder , private missionnaireService : MissionnaireService) { 
+  constructor(private fb : FormBuilder , private missionnaireService : MissionnaireService, private router : Router) { 
     this.createForm() ; 
   
   }
@@ -82,8 +84,8 @@ butonMsg ;
 
     var DeptGenVal = localStorage.getItem('deptGen') ; 
     var data = JSON.parse(DeptGenVal) ; 
-    console.log('retrievedObject:',data.code) ;
-    this.cod=data ;
+    console.log('retrievedObject: ',data.departement.code) ;
+    this.cod=data.departement;
   
 }
 createForm()
@@ -123,34 +125,57 @@ createForm()
   this.missionnaireService.updateMissionnaire(this.selectedMissionnaire)
   .subscribe(
     res =>{
+      alert('لقد تم التغيير بنجاح') ; 
+
       this.initMiss() ; 
       this.missionnaireService.loadMissionaire() ; 
+
       this.operation='' ; 
-    }
+    },
+    error => {console.log(error) ; 
+    alert('الرجاءالتثبت من المعطيات') ;}
   )} 
   remove()
   {
   this.missionnaireService.deleteMissionnaire(this.selectedMissionnaire.cin).subscribe(
     res => {
+      alert('لقد تم الحذف بنجاح') ; 
+
       this.selectedMissionnaire = new Missionnaire() ;
       this.missionnaireService.loadMissionaire() ; 
       this.operation='' ; 
+    },error =>{console.log(error) ; 
+      alert('الرجاءالتثبت ') ;
+    
     }
   )}
+
+  ListeMissionnaireComponent : any ;
 
   add(){
     console.log(this.missionnaireForm.value.graade) ; 
     const m = this.missionnaireForm.value ;
-    alert(JSON.stringify(m));
+
+   // alert(JSON.stringify(m));
     this.missionnaireService.addMissionnaire(m).subscribe(
       res => {
-        alert(JSON.stringify(res));
+       /* let element: HTMLElement = document.getElementsByClassName('btn')[0] as HTMLElement;
+        element.click();
 
-        console.log('c bon lka res') ; 
+        this.myModal.nativeElement.click();*/
+
+        this.done=true; 
+        alert('لقد تمت الاضافة بنجاح') ; 
+     //   alert(JSON.stringify(res));
+
+        //console.log('c bon lka res') ; 
         this.initMiss() ; 
         this.missionnaireService.loadMissionaire() ; 
         this.operation='' ; 
-      }
+      },
+      error =>{console.log(error);
+      alert("الرجاءالتثبت من المعطيات");}
+      
     )
   }
 }
